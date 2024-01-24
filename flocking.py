@@ -25,4 +25,5 @@ parameters2D = {
 
 model = BoidsModel(parameters2D)
 results = model.run()
-print(results.variables.BoidsModel.head())
+print(results)
+print(results.variables.BoidsModel.head(-1))

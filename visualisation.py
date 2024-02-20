@@ -27,5 +27,5 @@ def animation_plot(m, p):
 
     # Save the animation as a video file
     writer = FFMpegWriter(fps=20)
-    animation.save("animation.mp4", writer=writer)
+    animation.save("animation_cona.mp4", writer=writer)
     # return IPython.display.HTML(animation.to_jshtml(fps=20))

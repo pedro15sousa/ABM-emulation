@@ -42,6 +42,8 @@ sample = ap.Sample(parameters_multi)
 exp = ap.Experiment(BoidsModel, sample, iterations=args.iterations, record=True)
 # results = exp.run()
 results = exp.run(n_jobs=args.threads, verbose=10)
-results.save()
+results.reporters.to_csv('boids_statistics_results.csv')
+
+# results.reporters.save()
 
 # animation_plot(BoidsModel, parameters2D)

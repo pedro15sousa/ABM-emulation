@@ -10,6 +10,7 @@ from visualisation import animation_plot, animation_plot_single
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--threads', type=int, help="Number of threads")
+parser.add_argument('--iterations', type=int, help="Number of iterations")
 args = parser.parse_args()
 
 # Parameter definitions
@@ -38,7 +39,7 @@ parameters_multi.update({
 
 sample = ap.Sample(parameters_multi)
 
-exp = ap.Experiment(BoidsModel, sample, iterations=25, record=True)
+exp = ap.Experiment(BoidsModel, sample, iterations=args.iterations, record=True)
 # results = exp.run()
 results = exp.run(n_jobs=args.threads, verbose=10)
 results.save()

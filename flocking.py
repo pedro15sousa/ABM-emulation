@@ -44,11 +44,15 @@ parameters_multi.update({
 
 sample = ap.Sample(parameters_multi)
 
-exp = ap.Experiment(BoidsModel, sample, iterations=args.iterations, record=True, reporters_file=args.reporters_file)
-# results = exp.run()
+exp = ap.Experiment(BoidsModel, 
+                    sample, 
+                    iterations=args.iterations, 
+                    record=True, 
+                    reporters_file=args.reporters_file, 
+                    new_experiment=args.new_experiment)
 
-results = exp.run(n_jobs=args.threads, new_experiment=args.new_experiment, verbose=10)
-results.reporters.to_csv('boids_statistics_results.csv')
+results = exp.run(n_jobs=args.threads, verbose=10)
+# results.reporters.to_csv('boids_statistics_results.csv')
 
 # results.reporters.save()
 

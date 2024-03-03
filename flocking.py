@@ -11,6 +11,8 @@ from visualisation import animation_plot, animation_plot_single
 parser = argparse.ArgumentParser()
 parser.add_argument('--threads', type=int, help="Number of threads")
 parser.add_argument('--iterations', type=int, help="Number of iterations")
+parser.add_argument('--new_experiment', action="store_true", help="New experiment")
+parser.add_argument('--reporters_file', type=str, default="reporters.csv", help="Reporters file")
 args = parser.parse_args()
 
 # Parameter definitions
@@ -36,12 +38,16 @@ parameters_multi.update({
     'alignment_strength': ap.Values(0.01, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5),
     'border_strength': ap.Values(0.05, 0.1, 0.5, 1, 2, 3, 5, 7)
 })
+# parameters_multi.update({
+#     'cohesion_strength': ap.Values(0.001, 0.0025, 0.005),
+# })
 
 sample = ap.Sample(parameters_multi)
 
-exp = ap.Experiment(BoidsModel, sample, iterations=args.iterations, record=True)
+exp = ap.Experiment(BoidsModel, sample, iterations=args.iterations, record=True, reporters_file=args.reporters_file)
 # results = exp.run()
-results = exp.run(n_jobs=args.threads, verbose=10)
+
+results = exp.run(n_jobs=args.threads, new_experiment=args.new_experiment, verbose=10)
 results.reporters.to_csv('boids_statistics_results.csv')
 
 # results.reporters.save()

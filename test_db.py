@@ -2,7 +2,7 @@ import sqlite3
 import pickle
 import pandas as pd
 
-db_path = 'simulation.db'
+db_path = 'simulation_100k.db'
 
 # Connect to the SQLite database
 conn = sqlite3.connect(db_path)
